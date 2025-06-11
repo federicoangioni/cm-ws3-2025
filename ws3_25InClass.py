@@ -60,8 +60,8 @@ setMaterial(0,'Glass')
 #------------------------------------------------------
 #  Design section (Can edit this section)
 #------------------------------------------------------
-setMaterial(1,'Steel')
-setMaterial(2,'Aluminium')
+setMaterial(1,'Al6061T6')
+setMaterial(2,'Titanium')
 
 r1         = 21e-3;              # Radius of glass (fixed)
 r3         = 195e-3;             # Outer radius of material 3 (fixed)
@@ -203,7 +203,6 @@ def temperature_constraint(vars):
 
       # Evaluation time for this stage
       tst = t+deltaT*gmlsrk[st];      
-
       # Initial u vector for this stage
       if (st==0):                     
         u_st=np.copy(u_n)
@@ -216,7 +215,7 @@ def temperature_constraint(vars):
         u_np1[i] =  u_n[i] + gmlsrk[st]*dudtDT;
 
       # Update the boundary values  *** MODIFY CODE HERE ****
-      u_np1[0]  = u_amb;
+      u_np1[0]  = u_np1[1];
       u_np1[-1] = u_amb + f_amp*np.sin(2*np.pi*f_freq*tst);   # External forcing
 
 
