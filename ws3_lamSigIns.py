@@ -14,12 +14,12 @@ import matplotlib.gridspec as gridspec
 #------------------------------------------------------
 # Input parameters
 #------------------------------------------------------
-nx    = 20;    # Number of mesh points (must be even)
+nx    = 50;    # Number of mesh points (must be even)
 g     = 0.4;   # nu*(Delta t)/(Delta x)^2
 nu    = 1.0;   # Thermal diffusivity
-a     = 0.7;   # LSRK : coefficient of first stage
-b     = 0.8;   # LSRK : coefficient of second stage
-c     = 0.9;   # LSRK : coefficient of third stage
+a     = 0.14;   # LSRK : coefficient of first stage
+b     = 1/3;   # LSRK : coefficient of second stage
+c     = 1/2;   # LSRK : coefficient of third stage
 d     = 1.0;   # LSRK : coefficient of fourth stage
 
 
@@ -28,7 +28,7 @@ d     = 1.0;   # LSRK : coefficient of fourth stage
 #------------------------------------------------------
 def lamSig(ldt):
   L = ldt
-  sigma = 1 + ldt;               # Euler explicit time march
+  #sigma = 1 + ldt;               # Euler explicit time march
   #sigma = 1/(1- ldt);            # Euler implicit time march
   sigma =  1 + L**4*a*b*c*d+L**3*b*c*d+L**2*c*d+L*d              # ADD THE RKLS LAMBDA-SIGMA RELATION HERE**
   return sigma
