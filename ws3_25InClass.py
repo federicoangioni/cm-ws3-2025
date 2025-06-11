@@ -263,7 +263,12 @@ initial = [108e-3]
 constraint_dict = {"type" : "ineq", 
               "fun": temperature_constraint}
 
-solution = minimize(optimize_mass, x0=initial, constraints=[constraint_dict])
+
+bounds = [(21e-3, 195e-3)]  # r2 must lie between r1 and upper limit
+
+solution = minimize(optimize_mass, x0=initial, bounds=bounds, constraints=[constraint_dict])
+
+
 
 final_r2 = solution.x[0]
 
