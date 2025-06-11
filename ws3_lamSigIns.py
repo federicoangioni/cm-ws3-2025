@@ -27,9 +27,10 @@ d     = 1.0;   # LSRK : coefficient of fourth stage
 # Function for the lambda-sigma relation
 #------------------------------------------------------
 def lamSig(ldt):
+  L = ldt
   sigma = 1 + ldt;               # Euler explicit time march
   #sigma = 1/(1- ldt);            # Euler implicit time march
-  #sigma = 1 + ...                # ADD THE RKLS LAMBDA-SIGMA RELATION HERE**
+  sigma =  1 + L**4*a*b*c*d+L**3*b*c*d+L**2*c*d+L*d              # ADD THE RKLS LAMBDA-SIGMA RELATION HERE**
   return sigma
 
 #------------------------------------------------------
